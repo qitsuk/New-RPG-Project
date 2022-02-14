@@ -10,6 +10,7 @@ public abstract class RPGCharacter {
         this.name = name;
         this.level = 1;
         this.characterClass = characterClass;
+        // Apparently, new and improved java switch statement doesn't need break keyword.
         switch(characterClass) {
             case MAGE -> {
                 primaryAttributes = new PrimaryAttributes(8, 1, 1);
@@ -37,6 +38,18 @@ public abstract class RPGCharacter {
             case MAGE -> {
                 outputString.append("\nIntelligence: " + primaryAttributes.getPrimary() + "\nDexterity: " +
                         primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary());
+            }
+            case RANGER -> {
+                outputString.append("\nDexterity: " + primaryAttributes.getPrimary() + "\nIntelligence: " +
+                        primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary());
+            }
+            case ROGUE -> {
+                outputString.append("\nDexterity: " + primaryAttributes.getPrimary() + "\nStrength: " +
+                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary());
+            }
+            case WARRIOR -> {
+                outputString.append("\nStrength: " + primaryAttributes.getPrimary() + "\nDexterity: " +
+                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary());
             }
         }
         return outputString.toString();
