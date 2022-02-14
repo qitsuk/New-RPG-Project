@@ -1,38 +1,39 @@
 package dk.qitsuk.characters;
 
 public class PrimaryAttributes {
-    private int intelligence;
-    private int dexterity;
-    private int strength;
+    private int primary;
+    private int secondary;
+    private int tertiary;
 
     public PrimaryAttributes(int primary, int secondary, int tertiary) {
+        this.primary = primary;
+        this.secondary = secondary;
+        this.tertiary = tertiary;
+    }
 
+    public void increasePrimary(int amount) {
+        primary += amount;
+    }
+    public void increaseSecondary(int amount) {
+        secondary += amount;
+    }
+    public void increaseTertiary(int amount) {
+        tertiary += amount;
     }
 
 
     // region Getters and Setters
-    public int getIntelligence() {
-        return intelligence;
+
+    public int getPrimary() {
+        return primary;
     }
 
-    public int getDexterity() {
-        return dexterity;
+    public int getSecondary() {
+        return secondary;
     }
 
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
+    public int getTertiary() {
+        return tertiary;
     }
     // endregion
 }
