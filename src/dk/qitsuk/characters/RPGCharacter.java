@@ -1,10 +1,17 @@
 package dk.qitsuk.characters;
 
+import dk.qitsuk.customexceptions.InvalidWeaponException;
+import dk.qitsuk.weapons.Weapon;
+import dk.qitsuk.weapons.WeaponType;
+
 public abstract class RPGCharacter {
-    private String name;
+    // These are declared final, because they're never changed after they get set.
+    private final String name;
+    private final RPGClasses characterClass;
+
     protected PrimaryAttributes primaryAttributes;
     private int level;
-    private RPGClasses characterClass;
+
 
     public RPGCharacter(String name, RPGClasses characterClass) {
         this.name = name;
@@ -27,8 +34,19 @@ public abstract class RPGCharacter {
         }
     }
 
+    // Each RPGClass needs a way to level up, however, their methods are slighty different,
+    // different, so we make it abstract and force the classes to implement the function.
     public abstract void levelUp();
 
+    public abstract String equipWeapon(Weapon weapon) throws InvalidWeaponException;
+
+    public void increaseLevel() {
+        level++;
+    }
+
+
+
+    // A toString method that takes into account, what RPGClass it is called from.
     @Override
     public String toString() {
         StringBuilder outputString = new StringBuilder();
@@ -57,9 +75,6 @@ public abstract class RPGCharacter {
 
     public int getLevel() {
         return level;
-    }
-    public void increaseLevel() {
-        level++;
     }
 
     public String getName() {
