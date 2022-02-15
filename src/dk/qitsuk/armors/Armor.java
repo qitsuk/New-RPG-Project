@@ -35,9 +35,22 @@ public class Armor implements Equipable {
     public String getName() {
         return name;
     }
+
     @Override
     public String toString() {
-        return name + " is a " + quality + " " + armorType +  " with a primary attribute increase of "
+        return name + " is a " + quality + " " + armorType + " with a primary attribute increase of "
                 + primaryAttribute;
+    }
+
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    public int getPrimaryAttribute() {
+        return primaryAttribute;
+    }
+
+    public Slot getSlot() {
+        return slot;
     }
 }
