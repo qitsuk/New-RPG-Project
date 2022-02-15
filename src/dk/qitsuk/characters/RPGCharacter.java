@@ -3,16 +3,15 @@ package dk.qitsuk.characters;
 import dk.qitsuk.Equipable;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
-import dk.qitsuk.weapons.WeaponType;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public abstract class RPGCharacter {
     // These are declared final, because they're never changed after they get set.
     private final String name;
     private final RPGClasses characterClass;
     private PrimaryAttributes primaryAttributes;
+    private double totalDPS;
 
     private HashMap<Slot, Equipable> equipment;
 
@@ -39,6 +38,7 @@ public abstract class RPGCharacter {
                 primaryAttributes = new PrimaryAttributes(5, 2, 1);
             }
         }
+        calculateTotalDPS();
     }
 
     // Each RPGClass needs a way to level up, however, their methods are slighty different,
@@ -53,7 +53,15 @@ public abstract class RPGCharacter {
 
     public void calculateTotalDPS() {
         if (equipment.isEmpty()) {
-
+            if (getLevel() == 1) {
+                totalDPS = getPrimaryAttributes().getBaseDPS();
+            } else {
+                totalDPS = 1 + (double)getPrimaryAttributes().getTotalPrimary() / 100;
+            }
+        } else {
+            for (Equipable equipped: equipment.values()) {
+                totalDPS += equipped.getDPS();
+            }
         }
     }
 
@@ -67,20 +75,24 @@ public abstract class RPGCharacter {
                 ". These are their current stats: ");
         switch(characterClass) {
             case MAGE -> {
-                outputString.append("\nIntelligence: " + primaryAttributes.getPrimary() + "\nDexterity: " +
-                        primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary());
+                outputString.append("\nIntelligence: " + primaryAttributes.getTotalPrimary() + "\nDexterity: " +
+                        primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary()
+                        + "\nDPS: " + totalDPS);
             }
             case RANGER -> {
-                outputString.append("\nDexterity: " + primaryAttributes.getPrimary() + "\nIntelligence: " +
-                        primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary());
+                outputString.append("\nDexterity: " + primaryAttributes.getTotalPrimary() + "\nIntelligence: " +
+                        primaryAttributes.getSecondary()  + "\nStrength: " + primaryAttributes.getTertiary()
+                        + "\nDPS: " + totalDPS);
             }
             case ROGUE -> {
-                outputString.append("\nDexterity: " + primaryAttributes.getPrimary() + "\nStrength: " +
-                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary());
+                outputString.append("\nDexterity: " + primaryAttributes.getTotalPrimary() + "\nStrength: " +
+                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary()
+                        + "\nDPS: " + totalDPS);
             }
             case WARRIOR -> {
-                outputString.append("\nStrength: " + primaryAttributes.getPrimary() + "\nDexterity: " +
-                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary());
+                outputString.append("\nStrength: " + primaryAttributes.getTotalPrimary() + "\nDexterity: " +
+                        primaryAttributes.getSecondary()  + "\nIntelligence: " + primaryAttributes.getTertiary()
+                        + "\nDPS: " + totalDPS);
             }
         }
         return outputString.toString();

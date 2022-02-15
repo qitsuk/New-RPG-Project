@@ -5,21 +5,19 @@ import dk.qitsuk.Equipable;
 public class Weapon implements Equipable {
     private final WeaponType weaponType;
     private final String name;
+    private final String quality;
     private final int levelRequirement;
-//    private final double damage;
-//    private final double attackSpeed;
     private final double dps;
 
-    public Weapon(String name, WeaponType weaponType, int levelRequirement, double damage, double attackSpeed) {
+    public Weapon(String name, String quality, WeaponType weaponType, int levelRequirement, double damage, double attackSpeed) {
         this.name = name;
         this.weaponType = weaponType;
         this.levelRequirement = levelRequirement;
-//        this.damage = damage;
-//        this.attackSpeed = attackSpeed;
         dps = Math.round((damage * attackSpeed) * 100.0) / 100.0;
+        this.quality = quality;
     }
-
-    public String toString(String quality) {
+    @Override
+    public String toString() {
         return name + " is a " + quality + " " + weaponType + " with a base DPS of: " + dps;
     }
 
@@ -31,7 +29,7 @@ public class Weapon implements Equipable {
         return name;
     }
 
-    public double getDps() {
+    public double getDPS() {
         return dps;
     }
 

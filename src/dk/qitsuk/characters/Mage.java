@@ -11,6 +11,7 @@ public class Mage extends RPGCharacter {
     public void levelUp() {
         getPrimaryAttributes().increaseAll(5, 1, 1);
         increaseLevel();
+        calculateTotalDPS();
     }
     public String equipWeapon(Weapon weapon) {
         try {
