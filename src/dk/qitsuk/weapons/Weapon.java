@@ -1,6 +1,8 @@
 package dk.qitsuk.weapons;
 
-public class Weapon {
+import dk.qitsuk.Equipable;
+
+public class Weapon implements Equipable {
     private final WeaponType weaponType;
     private final String name;
     private final int levelRequirement;

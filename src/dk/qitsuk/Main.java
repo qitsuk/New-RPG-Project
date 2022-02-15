@@ -6,6 +6,7 @@ import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
 import dk.qitsuk.weapons.WeaponType;
 
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,30 +19,12 @@ public class Main {
 //        System.out.println(staff.toString("superior"));
 
         RPGCharacter mage = new Mage("Gwen");
-        try {
-            System.out.println(mage.equipWeapon(bow));
-        } catch (InvalidWeaponException iwe) {
-            System.out.println(iwe.getMessage());
+        System.out.println(mage);
+        while (mage.getLevel() < 12) {
+            mage.levelUp();
         }
 
-        try {
-            System.out.println(mage.equipWeapon(wand));
-        } catch (InvalidWeaponException iwe) {
-            System.out.println(iwe.getMessage());
-        }
-        try {
-            System.out.println(mage.equipWeapon(staff));
-        } catch (InvalidWeaponException iwe) {
-            System.out.println(iwe.getMessage());
-        }
-        while (mage.getLevel() < 12) {
-            mage.increaseLevel();
-        }
-        try {
-            System.out.println(mage.equipWeapon(staff));
-        } catch (InvalidWeaponException iwe) {
-            System.out.println(iwe.getMessage());
-        }
+        System.out.println(mage);
 
     }
 }

@@ -1,15 +1,21 @@
 package dk.qitsuk.characters;
 
+import dk.qitsuk.Equipable;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
 import dk.qitsuk.weapons.WeaponType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class RPGCharacter {
     // These are declared final, because they're never changed after they get set.
     private final String name;
     private final RPGClasses characterClass;
+    private PrimaryAttributes primaryAttributes;
 
-    protected PrimaryAttributes primaryAttributes;
+    private HashMap<Slot, Equipable> equipment;
+
     private int level;
 
 
@@ -17,6 +23,7 @@ public abstract class RPGCharacter {
         this.name = name;
         this.level = 1;
         this.characterClass = characterClass;
+        equipment = new HashMap<>();
         // Apparently, new and improved java switch statement doesn't need break keyword.
         switch(characterClass) {
             case MAGE -> {
@@ -42,6 +49,12 @@ public abstract class RPGCharacter {
 
     public void increaseLevel() {
         level++;
+    }
+
+    public void calculateTotalDPS() {
+        if (equipment.isEmpty()) {
+
+        }
     }
 
 
@@ -79,5 +92,13 @@ public abstract class RPGCharacter {
 
     public String getName() {
         return name;
+    }
+
+    public PrimaryAttributes getPrimaryAttributes() {
+        return primaryAttributes;
+    }
+
+    public HashMap<Slot, Equipable> getEquipment() {
+        return equipment;
     }
 }

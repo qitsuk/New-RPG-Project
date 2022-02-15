@@ -9,9 +9,7 @@ public class Mage extends RPGCharacter {
     }
 
     public void levelUp() {
-        primaryAttributes.increasePrimary(5);
-        primaryAttributes.increaseSecondary(1);
-        primaryAttributes.increaseTertiary(1);
+        getPrimaryAttributes().increaseAll(5, 1, 1);
         increaseLevel();
     }
     public String equipWeapon(Weapon weapon) {
@@ -23,6 +21,7 @@ public class Mage extends RPGCharacter {
             } else {
                 switch (weapon.getWeaponType()) {
                     case STAFF, WAND -> {
+                        getEquipment().put(Slot.WEAPON, weapon);
                         return  weapon.getName() + " Successfully Equipped.";
                     }
                     default -> {
