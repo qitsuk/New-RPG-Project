@@ -23,7 +23,8 @@ public class Mage extends RPGCharacter {
                 switch (weapon.getWeaponType()) {
                     case STAFF, WAND -> {
                         getEquipment().put(Slot.WEAPON, weapon);
-                        return  weapon.getName() + " Successfully Equipped.";
+                        calculateTotalDPS();
+                        return weapon.getName() + " Successfully Equipped.";
                     }
                     default -> {
                         throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +

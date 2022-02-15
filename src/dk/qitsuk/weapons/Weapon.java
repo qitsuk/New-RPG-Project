@@ -21,14 +21,17 @@ public class Weapon implements Equipable {
         return name + " is a " + quality + " " + weaponType + " with a base DPS of: " + dps;
     }
 
+    @Override
     public int getLevelRequirement() {
         return levelRequirement;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public double getDPS() {
         return dps;
     }

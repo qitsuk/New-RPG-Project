@@ -60,7 +60,7 @@ public abstract class RPGCharacter {
             }
         } else {
             for (Equipable equipped: equipment.values()) {
-                totalDPS += equipped.getDPS();
+                totalDPS *= equipped.getDPS();
             }
         }
     }
