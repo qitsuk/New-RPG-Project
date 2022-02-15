@@ -1,6 +1,7 @@
 package dk.qitsuk.weapons;
 
 import dk.qitsuk.Equipable;
+import dk.qitsuk.characters.Slot;
 
 public class Weapon implements Equipable {
     private final WeaponType weaponType;
@@ -8,6 +9,7 @@ public class Weapon implements Equipable {
     private final String quality;
     private final int levelRequirement;
     private final double dps;
+    private final Slot slot = Slot.WEAPON;
 
     public Weapon(String name, String quality, WeaponType weaponType, int levelRequirement, double damage, double attackSpeed) {
         this.name = name;
@@ -31,7 +33,6 @@ public class Weapon implements Equipable {
         return name;
     }
 
-    @Override
     public double getDPS() {
         return dps;
     }

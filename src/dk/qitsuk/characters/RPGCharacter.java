@@ -1,6 +1,8 @@
 package dk.qitsuk.characters;
 
 import dk.qitsuk.Equipable;
+import dk.qitsuk.armors.Armor;
+import dk.qitsuk.customexceptions.InvalidArmorException;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
 
@@ -43,9 +45,12 @@ public abstract class RPGCharacter {
 
     // Each RPGClass needs a way to level up, however, their methods are slighty different,
     // different, so we make it abstract and force the classes to implement the function.
+    // The same goes for equipWeapon and equipArmor.
     public abstract void levelUp();
 
-    public abstract String equipWeapon(Weapon weapon) throws InvalidWeaponException;
+    public abstract String equipWeapon(Weapon weapon, Slot slot) throws InvalidWeaponException;
+
+    public abstract String equipArmor(Armor armor, Slot slot) throws InvalidArmorException;
 
     public void increaseLevel() {
         level++;
