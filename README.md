@@ -13,7 +13,7 @@ Clone the project to your desired location, and open the project folder with you
 ### Dependencies
 JDK 17 (I've used OpenJDK, but any JDK of your choosing should do perfectly fine.)
 
-Build the project and run Main.java, CharacterTest.java and EquimentTests.java.
+Build the project and run Main.java, CharacterTest.java and EquimentTests.java from your IDE.
 
 ### Executable
 
