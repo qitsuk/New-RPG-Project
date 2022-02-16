@@ -20,15 +20,14 @@ public class Warrior extends RPGCharacter {
     }
 
     @Override
-    public String equipWeapon(Weapon weapon, Slot slot) {
-        try {
+    public String equipWeapon(Weapon weapon, Slot slot) throws InvalidWeaponException {
         if (slot != Slot.WEAPON) {
             throw new InvalidWeaponException("Can't equip a weapon to a non weapon slot. Try again.");
         }
         if (getLevel() < weapon.getLevelRequirement()) {
-            throw new InvalidWeaponException("This Character is not high enough level to equip this weapon. " +
-                    "Character is level " + getLevel() + " but needs to be level " + weapon.getLevelRequirement() +
-                    ". No weapon equipped.");
+            throw new InvalidWeaponException("This Character is not high enough level to equip this weapon. "
+                    + "Character is level " + getLevel() + " but needs to be level "
+                    + weapon.getLevelRequirement() + ". No weapon equipped.");
         }
         switch (weapon.getWeaponType()) {
             case AXE, HAMMER, SWORD -> {
@@ -36,37 +35,30 @@ public class Warrior extends RPGCharacter {
                 calculateTotalDPS();
                 return weapon.getName() + " Successfully Equipped";
             }
-            default -> throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +
-                    " because it is a " + weapon.getWeaponType().name() + ". No weapon equipped.");
-        }
-        } catch(InvalidWeaponException iwe) {
-            return iwe.getMessage();
+            default -> throw new InvalidWeaponException("This class cannot equip " + weapon.getName()
+                    + " because it is a " + weapon.getWeaponType().name() + ". No weapon equipped.");
         }
     }
 
     @Override
-    public String equipArmor(Armor armor, Slot slot) {
-        try {
-            if (slot == Slot.WEAPON) {
-                throw new InvalidArmorException("Cannot equip armor to weapon slot. No armor equipped.");
+    public String equipArmor(Armor armor, Slot slot) throws InvalidArmorException {
+        if (slot == Slot.WEAPON) {
+            throw new InvalidArmorException("Cannot equip armor to weapon slot. No armor equipped.");
+        }
+        if (getLevel() < armor.getLevelRequirement()) {
+            throw new InvalidArmorException("This Character is not high enough level to equip this armor. "
+                    + "Character is level " + getLevel() + " but needs to be level " + armor.getLevelRequirement()
+                    + ". No armor equipped.");
+        }
+        switch (armor.getArmorType()) {
+            case MAIL, PLATE -> {
+                getEquipment().put(slot, armor);
+                getPrimaryAttributes().setArmorPrimary(armor.getPrimaryAttribute());
+                calculateTotalDPS();
+                return armor.getName() + " Successfully Equipped.";
             }
-            if (getLevel() < armor.getLevelRequirement()) {
-                throw new InvalidArmorException("This Character is not high enough level to equip this armor. " +
-                        "Character is level " + getLevel() + " but needs to be level " + armor.getLevelRequirement() +
-                        ". No armor equipped.");
-            }
-            switch (armor.getArmorType()) {
-                case MAIL, PLATE -> {
-                    getEquipment().put(slot, armor);
-                    getPrimaryAttributes().setArmorPrimary(armor.getPrimaryAttribute());
-                    calculateTotalDPS();
-                    return armor.getName() + " Successfully Equipped.";
-                }
-                default -> throw new InvalidArmorException("This class cannot equip " + armor.getName() +
-                        " because it is a " + armor.getArmorType().name() + " armor. No armor equipped.");
-            }
-        } catch (InvalidArmorException iae) {
-            return iae.getMessage();
+            default -> throw new InvalidArmorException("This class cannot equip " + armor.getName()
+                    + " because it is a " + armor.getArmorType().name() + " armor. No armor equipped.");
         }
     }
 
