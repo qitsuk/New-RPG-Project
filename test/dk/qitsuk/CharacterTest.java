@@ -12,39 +12,39 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterTest {
     // region Testing if all chars are level one on creation
     @Test
-    void MageIsLevelOne_AtCreation_ShouldPass() {
-        RPGCharacter mage =  new Mage("Gwen");
+    void mageIsLevelOne_AtCreation_ShouldPass() {
+        RPGCharacter mage = new Mage("Gwen");
         int expected = 1;
         int actual = mage.getLevel();
         assertEquals(expected, actual);
     }
     @Test
-    void RangerIsLevelOne_AtCreation_ShouldPass() {
+    void rangerIsLevelOne_AtCreation_ShouldPass() {
         RPGCharacter ranger = new Ranger("Legolas");
         int expected = 1;
         int actual = ranger.getLevel();
         assertEquals(expected, actual);
     }
     @Test
-    void RogueIsLevelOne_AtCreation_ShouldPass() {
+    void rogueIsLevelOne_AtCreation_ShouldPass() {
         RPGCharacter rogue = new Rogue("Kali");
         int expected = 1;
         int actual = rogue.getLevel();
         assertEquals(expected, actual);
     }
     @Test
-    void WarriorIsLevelOne_AtCreation_ShouldPass() {
+    void warriorIsLevelOne_AtCreation_ShouldPass() {
         RPGCharacter warrior = new Warrior("Conan");
         int expected = 1;
         int actual = warrior.getLevel();
         assertEquals(expected, actual);
     }
-// endregion
+    // endregion
 
     // region Testing if all chars are level 2 after leveling
 
     @Test
-    void MageIsLevelTwo_AfterLeveling_ShouldPass() {
+    void mageIsLevelTwo_AfterLeveling_ShouldPass() {
         RPGCharacter mage = new Mage("Gwen");
         mage.levelUp();
         int expected = 2;
@@ -52,7 +52,7 @@ public class CharacterTest {
         assertEquals(expected, actual);
     }
     @Test
-    void RangerIsLevelTwo_AfterLeveling_ShouldPass() {
+    void rangerIsLevelTwo_AfterLeveling_ShouldPass() {
         RPGCharacter ranger = new Ranger("Legolas");
         ranger.levelUp();
         int expected = 2;
@@ -60,7 +60,7 @@ public class CharacterTest {
         assertEquals(expected, actual);
     }
     @Test
-    void RogueIsLevelTwo_AfterLeveling_ShouldPass() {
+    void rogueIsLevelTwo_AfterLeveling_ShouldPass() {
         RPGCharacter rogue = new Rogue("Kali");
         rogue.levelUp();
         int expected = 2;
@@ -68,7 +68,7 @@ public class CharacterTest {
         assertEquals(expected, actual);
     }
     @Test
-    void WarriorIsLevelTwo_AfterLeveling_ShouldPass() {
+    void warriorIsLevelTwo_AfterLeveling_ShouldPass() {
         RPGCharacter warrior = new Warrior("Conan");
         warrior.levelUp();
         int expected = 2;
@@ -81,7 +81,7 @@ public class CharacterTest {
     // region Testing if all chars gain the correct amount of stats when leveled
 
     @Test
-    void MageStatIncrease_WhenLevelUp_ShouldPass() {
+    void mageStatIncrease_WhenLevelUp_ShouldPass() {
         RPGCharacter mage = new Mage("Gwen");
         mage.levelUp();
         int[] expected = new int[] {13, 2, 2};
@@ -89,7 +89,7 @@ public class CharacterTest {
         assertArrayEquals(expected, actual);
     }
     @Test
-    void RangerStatIncrease_WhenLevelUp_ShouldPass() {
+    void rangerStatIncrease_WhenLevelUp_ShouldPass() {
         RPGCharacter ranger = new Ranger("Legolas");
         ranger.levelUp();
         int[] expected = new int[]{12, 2, 2};
@@ -97,7 +97,7 @@ public class CharacterTest {
         assertArrayEquals(expected, actual);
     }
     @Test
-    void RogueStatIncrease_WhenLevelUp_ShouldPass() {
+    void rogueStatIncrease_WhenLevelUp_ShouldPass() {
         RPGCharacter rogue = new Rogue("Kali");
         rogue.levelUp();
         int[] expected = new int[]{10, 3, 2};
@@ -106,7 +106,7 @@ public class CharacterTest {
     }
 
     @Test
-    void WarriorStatIncrease_WhenLevelUp_ShouldPass() {
+    void warriorStatIncrease_WhenLevelUp_ShouldPass() {
         RPGCharacter warrior = new Warrior("Conan");
         warrior.levelUp();
         int[] expected = new int[]{8, 4, 2};

@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         RPGCharacter warrior = new Warrior("Conan");
-        Weapon testSword = new Weapon("Test Sword", "common", WeaponType.SWORD, 1, 7, 1.7);
+        Weapon testSword = new Weapon("Test Sword", "common", WeaponType.SWORD, 2, 7, 1.7);
         Armor chestPlate = new Armor(ArmorType.PLATE, "Sturdy Chestplate", "common", 1, Slot.BODY, 1);
 /*
         System.out.println(mage);
@@ -29,11 +29,7 @@ public class Main {
         try {
             System.out.println(warrior.equipWeapon(testSword, Slot.WEAPON));
         } catch (InvalidWeaponException ignored) {}
-        System.out.println(warrior);
-        try {
-            System.out.println(warrior.equipArmor(chestPlate, Slot.BODY));
-        } catch (InvalidArmorException ignored) {}
-        System.out.println(warrior);
+
 
     }
 }
