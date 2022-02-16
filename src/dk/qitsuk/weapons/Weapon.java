@@ -40,4 +40,8 @@ public class Weapon implements Equipable {
     public WeaponType getWeaponType() {
         return weaponType;
     }
+
+    public Slot getSlot() {
+        return slot;
+    }
 }

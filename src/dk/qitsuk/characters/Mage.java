@@ -56,7 +56,7 @@ public class Mage extends RPGCharacter {
             }
             if (armor.getArmorType() == ArmorType.CLOTH) {
                 getEquipment().put(slot, armor);
-                getPrimaryAttributes().increaseAll(armor.getPrimaryAttribute(), 0, 0);
+                getPrimaryAttributes().setArmorPrimary(armor.getPrimaryAttribute());
                 calculateTotalDPS();
                 return armor.getName() + " Successfully Equipped";
             }

@@ -15,24 +15,6 @@ public class Main {
 
     public static void main(String[] args) {
         RPGCharacter mage = new Mage("Gwen");
-        Weapon wand = new Weapon("Sturdy Wand", "common", WeaponType.WAND, 1, 2, 1.2);
-        Armor clothHelmet = new Armor(ArmorType.CLOTH, "Cloth Headgear", "common", 1, Slot.HEAD, 5);
-        Armor clothCrown = new Armor(ArmorType.CLOTH, "Cloth Crown", "Superior", 1, Slot.HEAD, 10);
 
-        System.out.println(mage);
-        System.out.println("______________________________________________");
-
-        try {
-            System.out.println(mage.equipArmor(clothCrown, clothCrown.getSlot()));
-            System.out.println("__________________________________________");
-            System.out.println(mage);
-            System.out.println("__________________________________________");
-            System.out.println(mage.equipArmor(clothHelmet, clothHelmet.getSlot()));
-            System.out.println("__________________________________________");
-            System.out.println(mage);
-        } catch (InvalidArmorException ignored) {
-        }
-
-        System.out.println("______________________________________________");
     }
 }

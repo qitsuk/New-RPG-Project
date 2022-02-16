@@ -18,7 +18,9 @@ public abstract class RPGCharacter {
     private double totalDPS;
     private int level;
 
-
+    // Handling the assignment of what is the primary attribute, when creating the hero/character.
+    // Again, probably not the cleanest way of implementing it, as it can get quite confusing, if you
+    // don't have the character sheet handy.
     public RPGCharacter(String name, RPGClasses characterClass) {
         this.name = name;
         this.level = 1;
@@ -51,10 +53,12 @@ public abstract class RPGCharacter {
 
     public abstract String equipArmor(Armor armor, Slot slot) throws InvalidArmorException;
 
+    // Small helper function, to handle level up.
     public void increaseLevel() {
         level++;
     }
 
+    // Calculating the total DPS, taking care of currently equipped items.
     public void calculateTotalDPS() {
         if (equipment.isEmpty()) {
             if (getLevel() == 1) {
@@ -66,15 +70,13 @@ public abstract class RPGCharacter {
             for (Equipable equipped : equipment.values()) {
                 if (equipped instanceof Weapon) {
                     totalDPS *= equipped.getDPS();
-                } else if (equipped instanceof Armor) {
-                    int tempPrimary = ((Armor) equipped).getPrimaryAttribute();
-                    totalDPS = 1 + (double) (getPrimaryAttributes().getTotalPrimary() + tempPrimary) / 100;
+                }
+                if (equipped instanceof Armor) {
+                    totalDPS = 1 + (double) (getPrimaryAttributes().getTotalPrimary() + getPrimaryAttributes().getArmorPrimary()) / 100;
                 }
             }
         }
     }
-
-
     // A toString method that takes into account, what RPGClass it is called from.
     @Override
     public String toString() {
@@ -106,12 +108,10 @@ public abstract class RPGCharacter {
         return outputString.toString();
     }
 
+
+    // A few getters.
     public int getLevel() {
         return level;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public PrimaryAttributes getPrimaryAttributes() {
