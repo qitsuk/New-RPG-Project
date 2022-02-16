@@ -4,6 +4,7 @@ import dk.qitsuk.Equipable;
 import dk.qitsuk.armors.Armor;
 import dk.qitsuk.customexceptions.InvalidArmorException;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
+import dk.qitsuk.rpgclasses.RPGClasses;
 import dk.qitsuk.weapons.Weapon;
 
 import java.util.HashMap;

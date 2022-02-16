@@ -1,6 +1,8 @@
-package dk.qitsuk.characters;
+package dk.qitsuk.rpgclasses;
 
 import dk.qitsuk.armors.Armor;
+import dk.qitsuk.characters.RPGCharacter;
+import dk.qitsuk.characters.Slot;
 import dk.qitsuk.customexceptions.InvalidArmorException;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
@@ -11,6 +13,7 @@ public class Ranger extends RPGCharacter {
         super(name, RPGClasses.RANGER);
     }
 
+    @Override
     public void levelUp() {
         getPrimaryAttributes().increaseAll(5, 1,1 );
         increaseLevel();

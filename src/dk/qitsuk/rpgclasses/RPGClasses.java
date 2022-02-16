@@ -1,4 +1,4 @@
-package dk.qitsuk.characters;
+package dk.qitsuk.rpgclasses;
 
 public enum RPGClasses {
     MAGE, RANGER, ROGUE, WARRIOR
