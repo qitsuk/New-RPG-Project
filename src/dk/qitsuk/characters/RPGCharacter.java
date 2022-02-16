@@ -85,7 +85,7 @@ public abstract class RPGCharacter {
     public String toString() {
         StringBuilder outputString = new StringBuilder();
         outputString.append(name + " is a level " + getLevel() + " " + characterClass +
-                ". These are their current stats: ");
+                ".\nThese are their current stats: ");
         switch (characterClass) {
             case MAGE -> {
                 outputString.append("\nIntelligence: " + primaryAttributes.getTotalPrimary() + "\nDexterity: " +

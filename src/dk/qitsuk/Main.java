@@ -17,18 +17,19 @@ import dk.qitsuk.weapons.WeaponType;
 public class Main {
 
     public static void main(String[] args) {
+        RPGCharacter mage = new Mage("Gwendolina");
+        RPGCharacter ranger = new Ranger("Legolas");
+        RPGCharacter rogue = new Rogue("Kali");
         RPGCharacter warrior = new Warrior("Conan");
-        Weapon testSword = new Weapon("Test Sword", "common", WeaponType.SWORD, 2, 7, 1.7);
-        Armor chestPlate = new Armor(ArmorType.PLATE, "Sturdy Chestplate", "common", 1, Slot.BODY, 1);
-/*
+
         System.out.println(mage);
+        System.out.println("________________________________________________");
         System.out.println(ranger);
+        System.out.println("________________________________________________");
         System.out.println(rogue);
-        System.out.println(warrior);*/
+        System.out.println("________________________________________________");
         System.out.println(warrior);
-        try {
-            System.out.println(warrior.equipWeapon(testSword, Slot.WEAPON));
-        } catch (InvalidWeaponException ignored) {}
+        System.out.println("________________________________________________");
 
 
     }
