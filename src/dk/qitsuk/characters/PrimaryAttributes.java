@@ -28,7 +28,7 @@ public class PrimaryAttributes {
 
     // region Getters and Setters
 
-    public int getPrimary() {
+    public int getBasePrimary() {
         return basePrimary;
     }
 

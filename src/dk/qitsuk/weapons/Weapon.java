@@ -15,7 +15,7 @@ public class Weapon implements Equipable {
         this.name = name;
         this.weaponType = weaponType;
         this.levelRequirement = levelRequirement;
-        dps = Math.round((damage * attackSpeed) * 100.0) / 100.0;
+        dps = damage * attackSpeed;
         this.quality = quality;
     }
     @Override
