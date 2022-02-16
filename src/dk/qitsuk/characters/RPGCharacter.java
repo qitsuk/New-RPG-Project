@@ -16,6 +16,7 @@ public abstract class RPGCharacter {
     private final HashMap<Slot, Equipable> equipment;
 
     private PrimaryAttributes primaryAttributes;
+    private double unarmedDPS;
     private double totalDPS;
     private int level;
 
@@ -42,6 +43,7 @@ public abstract class RPGCharacter {
                 primaryAttributes = new PrimaryAttributes(5, 2, 1);
             }
         }
+        unarmedDPS = 1 + (double) getPrimaryAttributes().getTotalPrimary() / 100.00;
         calculateTotalDPS();
     }
 
@@ -65,15 +67,15 @@ public abstract class RPGCharacter {
             if (getLevel() == 1) {
                 totalDPS = getPrimaryAttributes().getBaseDPS();
             } else {
-                totalDPS = 1 + (double) getPrimaryAttributes().getTotalPrimary() / 100;
+                totalDPS = unarmedDPS;
             }
         } else {
             for (Equipable equipped : equipment.values()) {
                 if (equipped instanceof Weapon) {
-                    totalDPS *= equipped.getDPS();
+                    totalDPS = equipped.getDPS() * unarmedDPS;
                 }
                 if (equipped instanceof Armor) {
-                    totalDPS = 1 + (double) (getPrimaryAttributes().getTotalPrimary() + getPrimaryAttributes().getArmorPrimary()) / 100;
+                    totalDPS += 1 + (double) (getPrimaryAttributes().getTotalPrimary() + getPrimaryAttributes().getArmorPrimary()) / 100;
                 }
             }
         }
@@ -121,5 +123,12 @@ public abstract class RPGCharacter {
 
     public HashMap<Slot, Equipable> getEquipment() {
         return equipment;
+    }
+
+    public double getTotalDPS() {
+        return totalDPS;
+    }
+    public double getUnarmedDPS() {
+        return unarmedDPS;
     }
 }

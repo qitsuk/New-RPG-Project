@@ -36,10 +36,8 @@ public class Warrior extends RPGCharacter {
                 calculateTotalDPS();
                 return weapon.getName() + " Successfully Equipped";
             }
-            default -> {
-                throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +
-                        " because it is a " + weapon.getWeaponType().name() + ". No weapon equipped.");
-            }
+            default -> throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +
+                    " because it is a " + weapon.getWeaponType().name() + ". No weapon equipped.");
         }
         } catch(InvalidWeaponException iwe) {
             return iwe.getMessage();
