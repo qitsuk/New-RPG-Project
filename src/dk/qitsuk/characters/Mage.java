@@ -16,7 +16,7 @@ public class Mage extends RPGCharacter {
         increaseLevel();
         calculateTotalDPS();
     }
-
+    @Override
     public String equipWeapon(Weapon weapon, Slot slot) {
         try {
             if (slot != Slot.WEAPON) {
@@ -47,7 +47,7 @@ public class Mage extends RPGCharacter {
     public String equipArmor(Armor armor, Slot slot) throws InvalidArmorException {
         try {
             if (slot == Slot.WEAPON) {
-                throw new InvalidArmorException("Cannot equip armor to weapon slot. Try again");
+                throw new InvalidArmorException("Cannot equip armor to weapon slot. NO armor equipped.");
             }
             if (getLevel() < armor.getLevelRequirement()) {
                 throw new InvalidArmorException("This Character is not high enough level to equip this armor. " +
