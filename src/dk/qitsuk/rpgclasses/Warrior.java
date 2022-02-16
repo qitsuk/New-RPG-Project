@@ -59,6 +59,7 @@ public class Warrior extends RPGCharacter {
                 case MAIL, PLATE -> {
                     getEquipment().put(slot, armor);
                     getPrimaryAttributes().setArmorPrimary(armor.getPrimaryAttribute());
+                    calculateTotalDPS();
                     return armor.getName() + " Successfully Equipped.";
                 }
                 default -> throw new InvalidArmorException("This class cannot equip " + armor.getName() +

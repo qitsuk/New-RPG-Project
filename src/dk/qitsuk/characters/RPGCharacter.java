@@ -71,11 +71,11 @@ public abstract class RPGCharacter {
             }
         } else {
             for (Equipable equipped : equipment.values()) {
+                if (equipped instanceof Armor) {
+                    totalDPS += 1 + (double)getPrimaryAttributes().getTotalPrimary() / 100;
+                }
                 if (equipped instanceof Weapon) {
                     totalDPS = equipped.getDPS() * unarmedDPS;
-                }
-                if (equipped instanceof Armor) {
-                    totalDPS += 1 + (double) (getPrimaryAttributes().getTotalPrimary() + getPrimaryAttributes().getArmorPrimary()) / 100;
                 }
             }
         }
