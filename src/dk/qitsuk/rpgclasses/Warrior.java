@@ -7,13 +7,14 @@ import dk.qitsuk.customexceptions.InvalidArmorException;
 import dk.qitsuk.customexceptions.InvalidWeaponException;
 import dk.qitsuk.weapons.Weapon;
 
-public class Rogue extends RPGCharacter {
-    public Rogue(String name) {
-        super(name, RPGClasses.ROGUE);
+public class Warrior extends RPGCharacter {
+    public Warrior(String name) {
+        super(name, RPGClasses.WARRIOR);
     }
+
     @Override
     public void levelUp() {
-        getPrimaryAttributes().increaseAll(4, 1, 1 );
+        getPrimaryAttributes().increaseAll(3, 2, 1);
         increaseLevel();
         calculateTotalDPS();
     }
@@ -21,24 +22,26 @@ public class Rogue extends RPGCharacter {
     @Override
     public String equipWeapon(Weapon weapon, Slot slot) {
         try {
-            if (slot != Slot.WEAPON) {
-                throw new InvalidWeaponException("Can't equip a weapon to a non weapon slot. Try again.");
+        if (slot != Slot.WEAPON) {
+            throw new InvalidWeaponException("Can't equip a weapon to a non weapon slot. Try again.");
+        }
+        if (getLevel() < weapon.getLevelRequirement()) {
+            throw new InvalidWeaponException("This Character is not high enough level to equip this weapon. " +
+                    "Character is level " + getLevel() + " but needs to be level " + weapon.getLevelRequirement() +
+                    ". No weapon equipped.");
+        }
+        switch (weapon.getWeaponType()) {
+            case AXE, HAMMER, SWORD -> {
+                getEquipment().put(slot, weapon);
+                calculateTotalDPS();
+                return weapon.getName() + " Successfully Equipped";
             }
-            if (getLevel() < weapon.getLevelRequirement()) {
-                throw new InvalidWeaponException("This Character is not high enough level to equip this weapon. " +
-                        "Character is level " + getLevel() + " but needs to be level " + weapon.getLevelRequirement() +
-                        ". No weapon equipped.");
-            }
-            switch (weapon.getWeaponType()) {
-                case DAGGER, SWORD -> {
-                    getEquipment().put(slot, weapon);
-                    calculateTotalDPS();
-                    return weapon.getName() + " Successfully Equipped.";
-                }
-                default -> throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +
+            default -> {
+                throw new InvalidWeaponException("This class cannot equip " + weapon.getName() +
                         " because it is a " + weapon.getWeaponType().name() + ". No weapon equipped.");
             }
-        } catch (InvalidWeaponException iwe) {
+        }
+        } catch(InvalidWeaponException iwe) {
             return iwe.getMessage();
         }
     }
@@ -54,8 +57,8 @@ public class Rogue extends RPGCharacter {
                         "Character is level " + getLevel() + " but needs to be level " + armor.getLevelRequirement() +
                         ". No armor equipped.");
             }
-            switch(armor.getArmorType()) {
-                case LEATHER, MAIL -> {
+            switch (armor.getArmorType()) {
+                case MAIL, PLATE -> {
                     getEquipment().put(slot, armor);
                     getPrimaryAttributes().setArmorPrimary(armor.getPrimaryAttribute());
                     return armor.getName() + " Successfully Equipped.";
@@ -67,4 +70,6 @@ public class Rogue extends RPGCharacter {
             return iae.getMessage();
         }
     }
+
+
 }
